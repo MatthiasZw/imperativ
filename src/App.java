@@ -35,15 +35,13 @@ public class App {
         }
 
         double bmi=0;
-
-        for(float aktGewicht= gewicht ;  //Anfangswert
-            bmi <= maxBmi ; // Laufbedingung pro Durchlauf
-            aktGewicht= aktGewicht + schrittGewicht
-            )            //Increment pro Durchlauf
-        {
+        float aktGewicht=gewicht;
+        while (bmi<= maxBmi){
 
             bmi = aktGewicht / (height * height);
+
             String ergebnis="Normalgewicht";
+            aktGewicht=aktGewicht + schrittGewicht;
 
             switch ((short) (bmi<19 ?1 : bmi>25 ?3 : 2)){
                 case 1 :
@@ -54,10 +52,8 @@ public class App {
                 default:
                     ergebnis="Keine Ahnung"; break;
 
-        }
+            }
+           System.out.printf("%3.2f\t%2.2f\t%s\n", aktGewicht,bmi,ergebnis);
+        aktGewicht=aktGewicht + schrittGewicht;
 
-//dreiseitigesIF
-
-        System.out.printf("%3.2f\t%2.2f\t%s\n", aktGewicht, bmi,ergebnis );
-
-        }}}
+}}}
