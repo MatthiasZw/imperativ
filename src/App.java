@@ -1,5 +1,6 @@
 
 import java.io.Console;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class App {
@@ -26,14 +27,19 @@ public class App {
 
         double bmi = gewicht / (height * height);
 
+        short ergebnis=(short) (bmi<19 ?1 : bmi>25 ?3 : 2);
+        switch (ergebnis){
+            case 1 :
+                System.out.println("Untergewicht"); break;
+            case 2 :
+                System.out.println("Normalgewicht"); break;
+            case 3 :
+                System.out.println("Uebergewicht"); break;
+            default:
+                System.out.println("Keine Ahnung"); break;
 
-        if (bmi < 19) {
-            System.out.println("Untergewicht");
-        } else if (bmi > 25) {
-            System.out.println("Uebergewicht");
-        } else {
-            System.out.println("Normalgewicht");
         }
+
 //dreiseitigesIF
 
         System.out.printf("Ihr BMI ist %.2f", bmi);
