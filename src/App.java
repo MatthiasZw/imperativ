@@ -16,7 +16,7 @@ public class App {
 
 
         System.out.println("Bitte Ihr Gewicht in Kilogramm angeben");
-        int gewicht = Integer.parseInt(scanner.nextLine());
+        float gewicht = Float.parseFloat(scanner.nextLine());
         //int gewicht= scanner.nextInt();
         System.out.println("Sie wiegen " + gewicht);
 
@@ -24,23 +24,40 @@ public class App {
         System.out.println("Bitte Ihre Größe in Meter angeben");
         float height = Float.parseFloat(scanner.nextLine());
         System.out.println("Größe " + height);
+        System.out.println("Bitte Ihre Abbruch bmi angeben");
+        float maxBmi = (float)Double.parseDouble(scanner.nextLine());
+        System.out.println("Bitte Schrittweite in KG angeben (Default = 1kg)");
+        float schrittGewicht=1.0f;
+        String eingabe="";
+        eingabe = scanner.nextLine();
+        if (! eingabe.isEmpty()) {
+            schrittGewicht = Float.parseFloat(eingabe);
+        }
 
-        double bmi = gewicht / (height * height);
+        double bmi=0;
 
-        short ergebnis=(short) (bmi<19 ?1 : bmi>25 ?3 : 2);
-        switch (ergebnis){
-            case 1 :
-                System.out.println("Untergewicht"); break;
-            case 2 :
-                System.out.println("Normalgewicht"); break;
-            case 3 :
-                System.out.println("Uebergewicht"); break;
-            default:
-                System.out.println("Keine Ahnung"); break;
+        for(float aktGewicht= gewicht ;  //Anfangswert
+            bmi <= maxBmi ; // Laufbedingung pro Durchlauf
+            aktGewicht= aktGewicht + schrittGewicht
+            )            //Increment pro Durchlauf
+        {
+
+            bmi = aktGewicht / (height * height);
+            String ergebnis="Normalgewicht";
+
+            switch ((short) (bmi<19 ?1 : bmi>25 ?3 : 2)){
+                case 1 :
+                    ergebnis="Untergewicht"; break;
+                case 2 : break;
+                case 3 :
+                    ergebnis=("Uebergewicht"); break;
+                default:
+                    ergebnis="Keine Ahnung"; break;
 
         }
 
 //dreiseitigesIF
 
-        System.out.printf("Ihr BMI ist %.2f", bmi);
-    }}
+        System.out.printf("%3.2f\t%2.2f\t%s\n", aktGewicht, bmi,ergebnis );
+
+        }}}
