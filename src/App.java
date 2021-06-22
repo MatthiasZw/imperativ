@@ -34,7 +34,7 @@ public class App {
         } else {
             System.out.println("Normalgewicht");
         }
-
+//dreiseitigesIF
 
         System.out.printf("Ihr BMI ist %.2f", bmi);
     }}
