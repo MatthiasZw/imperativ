@@ -1,5 +1,3 @@
-
-
 import java.util.Scanner;
 
 public class App {
@@ -33,8 +31,10 @@ public class App {
             schrittGewicht = Float.parseFloat(eingabe);
         }
         int zahl = 0;
-        double bmi=0;
+        double[] bmiWerte=new double[1000];
         float aktGewicht=gewicht;
+        scanner.close();
+        double bmi=0;
         do {
             bmi = aktGewicht / (height * height);
 
@@ -45,7 +45,8 @@ public class App {
                             "Normalgewicht";
             System.out.printf("%5s\t%3.2f\t%2.2f\t%s\n", zahl==0? "":zahl, aktGewicht, bmi, ergebnis);
             aktGewicht -= schrittGewicht;
-            ++ zahl;
+        //    ++ zahl;
+            bmiWerte[zahl++]=bmi;
         }while (bmi>= minBmi);
     System.out.println("Sie müssen " + (zahl -1)  + " Wochen fasten");
 }}
