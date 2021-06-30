@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 class Patient {
 
     private String name;
 
-    private double[] bmiWerte = new double[1000];
+    private List<Double> bmiWerte = new ArrayList<>();
     private float aktGewicht = 0;
     private float gewicht = 0;
     private float groesse = 0;
@@ -56,7 +58,7 @@ class Patient {
 
             System.out.printf("%5s\t%3.2f\t%2.2f\t%s\n", anzWoche == 0?"": anzWoche, aktGewicht, bmi, ergebnis);
             aktGewicht -= schrittGewicht;
-            bmiWerte[anzWoche++] = bmi;
+            bmiWerte.add(bmi);
         } while(bmi >= minBMI);
     }
     public void ausgabeBMIWerte() {
@@ -65,9 +67,9 @@ class Patient {
 
 
 
-        for (int i = 0; i < bmiWerte.length; i++) {
-            if (bmiWerte[i] != 0.0) {
-                System.out.printf("%-10s\t %5.2f\n", i == 0 ? "Start": "Woche " + i, bmiWerte[i]);
+        for (int i = 0; i < bmiWerte.size(); i++) {
+            if (bmiWerte.get(i) != 0.0) {
+                System.out.printf("%-10s\t %5.2f\n", i == 0 ? "Start": "Woche " + i, bmiWerte.get(i));
             }
         }
     }
